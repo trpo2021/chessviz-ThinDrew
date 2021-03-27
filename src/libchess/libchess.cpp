@@ -30,6 +30,22 @@ bool pawn_check(char table[8][8], int y, int x)
         return false;
 }
 
+bool type_check(char table[8][8], int y, int x, int y_end, int x_end, char input, bool& friendly_fire, int& swing)
+{ // Проверка на тип хода (перемещение, взятие)
+    bool t = false;
+    if (input == '-' && table[y_end][x_end] == ' ' && table[y][x] != ' ') {
+        t = true;
+        return t;
+    }
+    if (input == 'x' && table[y_end][x_end] != ' ' && table[y][x] != ' ') {
+        friendly_fire = friendly_fire_(table, y_end, x_end, swing);
+        t = true;
+        return t;
+    }
+
+    return t;
+}
+
 void print_board(char table[8][8])
 { // вывод доски
     for (int i = 0; i < 8; ++i) {
