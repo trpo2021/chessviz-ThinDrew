@@ -1,0 +1,1 @@
+void print_board(char table[8][8]);
