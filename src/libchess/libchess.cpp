@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string>
+using namespace std;
 
 bool border_check(string input, const int size_str)
 {
