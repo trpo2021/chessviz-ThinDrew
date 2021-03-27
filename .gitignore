@@ -1,2 +1,4 @@
-*o
-chessviz
+*.a
+*.o
+*.out
+*.d
