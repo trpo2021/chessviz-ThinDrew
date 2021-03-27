@@ -1,5 +1,19 @@
 #include <stdio.h>
 
+bool border_check(string input, const int size_str)
+{
+    int border_check = 0; //будет равен 4, если мы не вышли за границы
+    for (int i = 0; i < size_str; i++) {
+        if ((input[i] >= 'a' && input[i] <= 'h') || (input[i] >= '0' && input[i] <= '9')) {
+            border_check++; //будет равен 4, если мы не вышли за границы
+        }
+    }
+    if (border_check != 4) {
+        return false;
+    }
+    return true;
+}
+
 bool figure_check(char table[8][8], int y, int x, char input)
 { // Проверка типа фигуры
     if ((input + 32) == table[y][x] || input == table[y][x])
