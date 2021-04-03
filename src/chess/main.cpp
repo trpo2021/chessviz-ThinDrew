@@ -91,6 +91,11 @@ int main()
 			continue;
 		}
 
+		if (friendly_fire == false){
+			cerr << "Ошибка: Вы не можете съесть своих\n";
+			continue;
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';

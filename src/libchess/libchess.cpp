@@ -2,12 +2,20 @@
 #include <string>
 using namespace std;
 
+bool friendly_fire_(char table[8][8], int y_end, int x_end, int &swing){
+	if (table[y_end][x_end]  >= 'a'  and swing == 0)
+		return true;
+	if (table[y_end][x_end]  < 'Z' and swing == 1)
+		return true;
+	return false;
+}
+
 bool border_check(string input, const int size_str)
 {
     int border_check = 0; //будет равен 4, если мы не вышли за границы
     for (int i = 0; i < size_str; i++) {
         if ((input[i] >= 'a' && input[i] <= 'h') || (input[i] >= '0' && input[i] <= '9')) {
-            border_check++; //будет равен 4, если мы не вышли за границы
+            border_check++;
         }
     }
     if (border_check != 4) {
