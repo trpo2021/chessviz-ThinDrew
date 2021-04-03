@@ -62,6 +62,11 @@ int main()
         	continue;
 		}
 
+		if (input.empty() || input.size() > size_str) {
+    		cerr << "Ошибка: Строка либо пуста, либо больше, чем нужно" << endl;
+    		continue;
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';
