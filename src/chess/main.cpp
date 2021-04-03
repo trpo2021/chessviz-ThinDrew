@@ -38,9 +38,12 @@ int main()
 
     print_board(table);
 
+    int swing = 0;
+
     do {
         int index = 0; //будет прибавляться, если мы указываем тип фигуры
         string input; //входные данные
+        bool friendly_fire = true;
         input.clear();
         cin >> input;
 
@@ -80,6 +83,12 @@ int main()
 			
 	        	continue;
 			}
+		}
+
+		if (type_check(table, y, x, y_end, x_end, input[2+index], friendly_fire, swing) == false){ // Проверка на тип хода (перемещение, взятие)
+			cerr << "Ошибка: Тип хода не соответствует действию\n"; 
+			
+			continue;
 		}
 
         //Перемещение фигуры
