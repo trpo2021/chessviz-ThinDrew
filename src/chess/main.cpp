@@ -74,6 +74,14 @@ int main()
 			}
 		}
 
+		if(index == 0) { // Проверка - не является ли пешка фигурой
+			if (pawn_check(table, y, x) == false) {
+				cerr << "Ошибка: Эта фигура не является пешкой\n";
+			
+	        	continue;
+			}
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';
