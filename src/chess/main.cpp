@@ -57,6 +57,11 @@ int main()
 
         printf("\nx: %d, y: %d, x_end: %d, y_end: %d\n", x, y, x_end, y_end); //сделано для понимания координат, можно убрать
 
+        if (border_check(input, size_str) == false){ // Проверка на соблюдение границы
+        	cerr << "Ошибка: Выход за границы\n";
+        	continue;
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';
