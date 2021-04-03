@@ -73,6 +73,10 @@ bool type_check(char table[8][8], int y, int x, int y_end, int x_end, char input
     return t;
 }
 
+bool move_check(char table [8][8], int y, int x, int y_end, int x_end) { // Проверка на соблюдение правил движения фигур
+	int dx, dy;
+}
+
 void print_board(char table[8][8])
 { // вывод доски
     for (int i = 0; i < 8; ++i) {
