@@ -75,6 +75,13 @@ bool type_check(char table[8][8], int y, int x, int y_end, int x_end, char input
 
 bool move_check(char table [8][8], int y, int x, int y_end, int x_end) { // Проверка на соблюдение правил движения фигур
 	int dx, dy;
+	if (table[y][x] == 'N' || table[y][x] == 'n') {
+		dx = x_end-x;
+		dy = y_end-y;
+		if (abs(dx)==2 and abs(dy)==1) return true;
+		if (abs(dx)==1 and abs(dy)==2) return true;
+		else return false;
+	}
 }
 
 void print_board(char table[8][8])
