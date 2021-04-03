@@ -41,6 +41,9 @@ int main()
     int swing = 0;
     int party = 1;
 
+    printf("\nХод Белых: \n"); //вывод при первом запуске
+    printf("%d. ", party);
+
     do {
     	const int size_str = 10;
         int index = 0; //будет прибавляться, если мы указываем тип фигуры
