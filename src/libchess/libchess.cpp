@@ -96,6 +96,31 @@ bool move_check(char table [8][8], int y, int x, int y_end, int x_end) { // Пр
 		}
 		return true;
 	}
+	if (table[y][x] == 'R' || table[y][x] == 'r') {
+		int i, j;
+		dx = x_end-x;
+		dy = y_end-y;
+		cout << abs(dx) << " " << abs(dy) << endl;
+		if (dx != 0 && dy == 0) {
+			dx/=abs(dx);
+			for (i = x+dx, j = y+dy; i != x_end; i+=dx){
+				cout << table[j][i] << " " << j << " " << i << endl;
+				if(table[j][i]!=' ') return false;
+			}
+			return true;
+		}
+		
+		if (dy != 0 && dx == 0){
+			dy/=abs(dy);
+			for (i = x+dx, j = y+dy; j != y_end; j+=dy){
+				cout << table[j][i] << " " << j << " " << i << endl;
+				if(table[j][i]!=' ') return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	else return false;
 }
 
 void print_board(char table[8][8])
