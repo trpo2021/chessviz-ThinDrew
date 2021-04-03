@@ -10,6 +10,23 @@ bool friendly_fire_(char table[8][8], int y_end, int x_end, int &swing){
 	return false;
 }
 
+bool white_step(char table[8][8], int y, int x, int &swing){ //Проверка на регистр и смена хода
+	if (table[y][x] < 'Z'){
+		swing++;
+		return true;	
+	}
+	return false;
+}
+
+bool black_step(char table[8][8], int y, int x, int &swing){ //Проверка на регистр и смена хода
+	if(table[y][x] > 'a'){
+		swing--;
+		return true;
+	}
+	
+	return false;
+}
+
 bool border_check(string input, const int size_str)
 {
     int border_check = 0; //будет равен 4, если мы не вышли за границы

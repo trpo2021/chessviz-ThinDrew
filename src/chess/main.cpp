@@ -39,11 +39,12 @@ int main()
     print_board(table);
 
     int swing = 0;
+    int party = 1;
 
     do {
         int index = 0; //будет прибавляться, если мы указываем тип фигуры
         string input; //входные данные
-        bool friendly_fire = true;
+        bool flag = false, side, friendly_fire = true;
         input.clear();
         cin >> input;
 
@@ -96,11 +97,38 @@ int main()
 			continue;
 		}
 
+		switch(swing){
+        	case 0: 
+				side = white_step(table, y, x, swing); //можем ввести только большой регистр, иначе side = false
+        		break;
+        	case 1: 
+				side = black_step(table, y, x, swing); //можем ввести только маленький регистр, иначе side = false
+				break;
+		}
+		
+
+		if(side == false){ // Если ввели не тот регистр
+			cerr << "Ошибка: Сейчас ходит противоположная сторона\n";
+			continue;
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';
         //Вывод результата:
         print_board(table);
+
+        switch (swing) {
+        	case 1:
+        		printf("\nХод чёрных: \n");
+        		printf("%d. ", party);
+        		break;
+        	case 0:
+        		printf("\nХод белых: \n");
+        		party++;
+        		printf("%d. ", party);
+        		break;
+		}
 
     } while (true);
 }
