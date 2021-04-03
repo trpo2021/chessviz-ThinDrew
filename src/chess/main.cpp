@@ -67,6 +67,13 @@ int main()
     		continue;
 		}
 
+		if(index == 1){
+	        if (figure_check(table, y, x, input[0]) == false){ // Проверка типа фигуры
+	        	cerr << "Ошибка: Фигуры не соответствуют\n";
+	        	continue;
+			}
+		}
+
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
         table[y][x] = ' ';
