@@ -82,6 +82,20 @@ bool move_check(char table [8][8], int y, int x, int y_end, int x_end) { // Пр
 		if (abs(dx)==1 and abs(dy)==2) return true;
 		else return false;
 	}
+	if (table[y][x] == 'B' || table[y][x] == 'b') {
+		int i, j;
+		dx = x_end-x;
+		dy = y_end-y;
+		if (abs(dx)!=abs(dy)) return false;
+		cout << abs(dx) << " " << abs(dy) << endl;
+		dx/=abs(dx);
+		dy/=abs(dy);
+		for (i=x+dx, j=y+dy; i != x_end; i+=dx, j+=dy) {
+			cout << table[j][i] << " " << j << " " << i << endl;
+			if(table[j][i]!=' ') return false;
+		}
+		return true;
+	}
 }
 
 void print_board(char table[8][8])
