@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string>
+#include <iostream>
 using namespace std;
 
 bool friendly_fire_(char table[8][8], int y_end, int x_end, int &swing){
