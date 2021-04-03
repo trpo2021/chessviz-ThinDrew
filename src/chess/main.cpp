@@ -42,6 +42,7 @@ int main()
     int party = 1;
 
     do {
+    	const int size_str = 10;
         int index = 0; //будет прибавляться, если мы указываем тип фигуры
         string input; //входные данные
         bool flag = false, side, friendly_fire = true;
