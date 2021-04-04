@@ -17,7 +17,8 @@ int main()
     for (int i = 0; i < 8; ++i) {
         table[1][i] = 'p';
         table[6][i] = 'P';
-    }table[0][0] = 'r';
+    }
+    table[0][0] = 'r';
     table[0][7] = 'r';
     table[7][0] = 'R';
     table[7][7] = 'R';
@@ -43,14 +44,15 @@ int main()
     printf("%d. ", party);
 
     do {
-    	const int size_str = 10;
+        const int size_str = 10;
         int index = 0; //будет прибавляться, если мы указываем тип фигуры
-        string input; //входные данные
+        string input;  //входные данные
         bool side, friendly_fire = true;
         input.clear();
         cin >> input;
 
-        if (input[0] >= 'A' && input[0] <= 'Z') index++; //делаем сдвиг, не учитывая первый элемент
+        if (input[0] >= 'A' && input[0] <= 'Z')
+            index++; //делаем сдвиг, не учитывая первый элемент
 
         printf("\n");
 
@@ -63,58 +65,75 @@ int main()
         y = 7 - y;
         y_end = 7 - y_end;
 
-        printf("\nx: %d, y: %d, x_end: %d, y_end: %d\n", x, y, x_end, y_end); //сделано для понимания координат, можно убрать
+        printf("\nx: %d, y: %d, x_end: %d, y_end: %d\n",
+               x,
+               y,
+               x_end,
+               y_end); //сделано для понимания координат, можно убрать
 
-        if (border_check(input, size_str) == false){ // Проверка на соблюдение границы
-        	cerr << "Ошибка: Выход за границы\n";
-        	continue;
-		}
+        if (border_check(input, size_str)
+            == false) { // Проверка на соблюдение границы
+            cerr << "Ошибка: Выход за границы\n";
+            continue;
+        }
 
-		if (input.empty() || input.size() > size_str) {
-    		cerr << "Ошибка: Строка либо пуста, либо больше, чем нужно" << endl;
-    		continue;
-		}
+        if (input.empty() || input.size() > size_str) {
+            cerr << "Ошибка: Строка либо пуста, либо больше, чем нужно" << endl;
+            continue;
+        }
 
-		if(index == 1){
-	        if (figure_check(table, y, x, input[0]) == false){ // Проверка типа фигуры
-	        	cerr << "Ошибка: Фигуры не соответствуют\n";
-	        	continue;
-			}
-		}
+        if (index == 1) {
+            if (figure_check(table, y, x, input[0])
+                == false) { // Проверка типа фигуры
+                cerr << "Ошибка: Фигуры не соответствуют\n";
+                continue;
+            }
+        }
 
-		if(index == 0) { // Проверка - не является ли пешка фигурой
-			if (pawn_check(table, y, x) == false) {
-				cerr << "Ошибка: Эта фигура не является пешкой\n";
-			
-	        	continue;
-			}
-		}
+        if (index == 0) { // Проверка - не является ли пешка фигурой
+            if (pawn_check(table, y, x) == false) {
+                cerr << "Ошибка: Эта фигура не является пешкой\n";
 
-		if (type_check(table, y, x, y_end, x_end, input[2+index], friendly_fire, swing) == false){ // Проверка на тип хода (перемещение, взятие)
-			cerr << "Ошибка: Тип хода не соответствует действию\n"; 
-			
-			continue;
-		}
+                continue;
+            }
+        }
 
-		if (friendly_fire == false){
-			cerr << "Ошибка: Вы не можете съесть своих\n";
-			continue;
-		}
+        if (type_check(
+                    table,
+                    y,
+                    x,
+                    y_end,
+                    x_end,
+                    input[2 + index],
+                    friendly_fire,
+                    swing)
+            == false) { // Проверка на тип хода (перемещение, взятие)
+            cerr << "Ошибка: Тип хода не соответствует действию\n";
 
-		switch(swing){
-        	case 0: 
-				side = white_step(table, y, x, swing); //можем ввести только большой регистр, иначе side = false
-        		break;
-        	case 1: 
-				side = black_step(table, y, x, swing); //можем ввести только маленький регистр, иначе side = false
-				break;
-		}
-		
+            continue;
+        }
 
-		if(side == false){ // Если ввели не тот регистр
-			cerr << "Ошибка: Сейчас ходит противоположная сторона\n";
-			continue;
-		}
+        if (friendly_fire == false) {
+            cerr << "Ошибка: Вы не можете съесть своих\n";
+            continue;
+        }
+
+        switch (swing) {
+        case 0:
+            side = white_step(table, y, x, swing); //можем ввести только большой
+                                                   //регистр, иначе side = false
+            break;
+        case 1:
+            side = black_step(
+                    table, y, x, swing); //можем ввести только маленький
+                                         //регистр, иначе side = false
+            break;
+        }
+
+        if (side == false) { // Если ввели не тот регистр
+            cerr << "Ошибка: Сейчас ходит противоположная сторона\n";
+            continue;
+        }
 
         //Перемещение фигуры
         table[y_end][x_end] = table[y][x];
