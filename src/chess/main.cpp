@@ -17,9 +17,7 @@ int main()
     for (int i = 0; i < 8; ++i) {
         table[1][i] = 'p';
         table[6][i] = 'P';
-    }
-
-    table[0][0] = 'r';
+    }table[0][0] = 'r';
     table[0][7] = 'r';
     table[7][0] = 'R';
     table[7][7] = 'R';
